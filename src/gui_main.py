@@ -16,8 +16,8 @@ class GUI:
                 self.language = "English"
                 self.speed = "Slow"
                 
-                w = 50
-                h =15
+                w = 22
+                h = 7
                 self.programs = tk.Button(self.window,
                                              text = "Programs",
                                              height = h,
@@ -42,13 +42,16 @@ class GUI:
                 self.options.grid (row = 2, column = 2)
                 
                 # doesn't work on windows, but seems to have better support on unix
-#                image = Image.open("LL.png")
-#                photo = ImageTk.PhotoImage(image)
-#                self.ll = tk.Label(self.window, 
-#                                height = h, 
-#                                width = w,
-#                                image = photo
-#                                )
+                #image = Image.open("turing.jpg")
+                #photo = ImageTk.PhotoImage(image)
+                #self.ll = tk.Label(self.window, 
+                #                height = h, 
+                #                width = w,
+                #                image = photo
+                #                )
+		self.logo = tk.Label(self.window, text = "MIT Lincoln Lab",
+				     font = ("Helvetica", 22))
+		self.logo.grid(row = 1, column = 1)		
 
                                           
         def showOptions(self):
@@ -76,14 +79,15 @@ class GUI:
             self.options.config(state = newState)
             
         def showAbout(self):
-            webbrowser.open("foo.html")
+            webbrowser.open("turing.html")
 
             
                                              
 window = tk.Tk()
-window.resizable(width=tk.FALSE, height = tk.FALSE)
-window.minsize(width =400, height = 400)
-#window.geometry = ("2500x1600")
+
+#window.minsize(width =10, height = 1)
+window.geometry = ("10x5")
+#window.resizable(width=tk.FALSE, height = tk.FALSE)
 window.wm_title("Turing Machine")
 
 app = GUI(window)

@@ -65,18 +65,18 @@ class Run:
         self.runButton = tk.Button(self.window,
                                    text = "Run!",
                                    command = self.run,
-                                   width = 10,
-                                   height = 3,
+                                   width = 5,
+                                   height = 1,
                                    **textOptions)
         self.runButton.grid(column = 5, row = 1, columnspan = 2, rowspan = 2)
         
         self.display = tk.Text(self.window)
-        self.display.grid(row = 3, column = 1, rowspan = 4, columnspan = 5)
+        self.display.grid(row = 3, column = 1, rowspan = 2, columnspan = 5)
         
         self.exit = tk.Button(self.window,
                               text = "Exit",
-                              width = 10, 
-                              height = 3,
+                              width = 5, 
+                              height = 1,
                               command = self.close,
                               **textOptions)
         self.exit.grid(row = 9, column = 5, columnspan = 2, rowspan = 2)
