@@ -1,0 +1,8 @@
+# Random latex things
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.bak
+*.toc
