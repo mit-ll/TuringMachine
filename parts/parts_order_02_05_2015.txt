@@ -1,0 +1,4 @@
+2 - Touch Screen (http://www.amazon.com/Tontec-Raspberry-Display-AT070TN90-Touchscreen/dp/B00HNLXZHO)
+3 - Raspberry Pi 2.0 (http://www.adafruit.com/products/2358)
+3 - Multimeters (http://www.adafruit.com/products/2034)
+3 - Keyboard/Mouse for Raspbery Pis (http://www.adafruit.com/products/1738)
