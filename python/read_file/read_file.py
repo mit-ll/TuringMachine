@@ -12,7 +12,7 @@ for line in f:
 	# Read value from line
 	value = line.strip()
 
-	# Print value
+	# Print our value
 	print value
 
 # Close our file
