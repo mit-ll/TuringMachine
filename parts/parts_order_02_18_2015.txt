@@ -2,3 +2,5 @@
 1 - Micro USB Cables (http://www.amazon.com/Anker-Premium-Android-Samsung-Motorola/dp/B00N8VHW72/ref=sr_1_7?ie=UTF8&qid=1424378860&sr=8-7&keywords=microusb+cable+pack)
 5 - USB A to B (http://www.amazon.com/Belkin-3FT-USB-Device-Cable/dp/B00004Z5IU/ref=sr_1_8?ie=UTF8&qid=1424378985&sr=8-8&keywords=usb+cable+a+to+b)
 1 - OpeanBeam (http://www.adafruit.com/products/1274)
+3 - Motor Shields (http://www.adafruit.com/products/1438)
+4 - Servos (http://www.adafruit.com/products/155)
