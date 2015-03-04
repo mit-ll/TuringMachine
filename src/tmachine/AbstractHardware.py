@@ -19,8 +19,12 @@ class AbstractHardware:
 	__metaclass__ = ABCMeta
 
 	@abstractmethod
-	def move_tape(self,x):
+	def moveLeft(self,x):
 		""" moves the tape x units to the left """
+		pass
+
+	def moveRight(self,x):
+		""" moves the tape x units to the right """
 		pass
 
 	@abstractmethod

@@ -24,14 +24,21 @@ class VirtualHardware(AbstractHardware):
 		if "init" in kwargs.keys():
 			self.initialize(kwargs["init"])
 
-	def move_tape(self,x):
+	def moveLeft(self,x=1):
 		""" moves the tape x units to the left """
 		newPos = self.__position + x
-		if newPos >= self.__tape_length or newPos < 0:
+		if newPos >= self.__tape_length:
 			raise Exception("Out of (Virtual) Tape!")
 		else:
 			self.__position = newPos
 
+	def moveRight(self,x=1):
+		""" moves the tape x units to the left """
+		newPos = self.__position - x
+		if newPos < 0:
+			raise Exception("Out of (Virtual) Tape!")
+		else:
+			self.__position = newPos
 	
 	def write(self,value):
 		""" Writes value to current position in tape"""
