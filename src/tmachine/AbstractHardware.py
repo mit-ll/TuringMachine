@@ -23,6 +23,7 @@ class AbstractHardware:
 		""" moves the tape x units to the left """
 		pass
 
+	@abstractmethod
 	def moveRight(self,x):
 		""" moves the tape x units to the right """
 		pass
