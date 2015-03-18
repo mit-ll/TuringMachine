@@ -52,8 +52,8 @@ class VirtualHardware(AbstractHardware):
 	
 	def initialize(self,tape):
 		""" Initializes starting data for the tape"""
-		for i in range(tape.length()):
-			self.tape[self.__position + i] = tape[i]
+		for i in range(len(tape)):
+			self.__tape[self.__position + i] = tape[i]
 
 	
 	def bulk_erase(self):
