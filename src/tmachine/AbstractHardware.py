@@ -9,10 +9,11 @@ class AbstractHardware:
 
 	Methods:
 
-	-- move_tape
-	-- write
+	-- moveLeft(units)
+	-- moveRight(units)
+	-- write(symbol)
 	-- read
-	-- initialize
+	-- initialize(array[symbol])
 	-- bulk_erase
 	"""
 
