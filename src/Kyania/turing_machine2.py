@@ -75,8 +75,9 @@ while state != "stop":
     else:
         turing_machine.moveRight()
     
-    next_state = state_function["next_state"]
-    print read_val
-    print state_function
-    print state
-    print turing_machine.position()
+    state = state_function["next_state"]
+#    print read_val
+#    print state_function
+#    print state
+#   # print turing_machine.position()
+    turing_machine.tape()
