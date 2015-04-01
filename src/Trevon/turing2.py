@@ -9,8 +9,10 @@ filename = "unary addition.turing.py"
 from tmachine.VirtualHardware import VirtualHardware
 tape = ["_","1","1","_","1","1","1","1","1","1","1","_"]
 turing_machine = VirtualHardware(tape_length=50,init = tape)
+
 running = True
 state = 0
+turin
 
 statedict = {}
     
@@ -49,7 +51,7 @@ sys.path.append("../")
 print read_val
 
 state = "0"
-while state != "stop":
+while statename != "stop":
     read_val = turing_machine.read()
     state_function = None
     read_function = None
@@ -78,7 +80,7 @@ while state != "stop":
     next_state =statefunction["ns"]
     print read_val
     print state_function
-    print state
+    print statename
     print turing_machine.position()
     
     
