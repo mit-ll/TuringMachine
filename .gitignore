@@ -7,3 +7,5 @@
 *.bak
 *.toc
 *.pyc
+# SolidWorks
+~$*
