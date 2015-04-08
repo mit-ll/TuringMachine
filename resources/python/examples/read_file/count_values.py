@@ -28,9 +28,9 @@ for line in f:
         # Read value from line
         value = line.strip()
 
-        if value == "1":
-                ones += 1
-        elif value == "0":
+	if value == "1":
+    	ones += 1
+    elif value == "0":
 		zeros += 1
 	elif value == "":
 		nothing += 1
