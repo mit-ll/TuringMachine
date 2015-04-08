@@ -4,6 +4,9 @@ This repository will contain example code used in classes, lecture slides, and t
 
 Additional supporting information can be found on the [wiki](https://github.com/jlepird/turing/wiki).
 
+## Resources
+  - [A Turing Machine](http://aturingmachine.com/)
+  - [Turing Machine Emulator](http://www.turing.org.uk/turing/scrapbook/tmjava.html)
 
 # Touch Screen installation
 
