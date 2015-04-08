@@ -35,6 +35,11 @@ class AbstractHardware:
 		pass
 
 	@abstractmethod
+	def erase(self):
+		""" Erase current position on the tape """
+		pass
+
+	@abstractmethod
 	def read(self):
 		""" Reads the value in the current position"""
 		pass

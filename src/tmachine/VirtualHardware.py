@@ -49,6 +49,11 @@ class VirtualHardware(AbstractHardware):
 		""" Reads the value in the current position"""
 		return self.__tape[self.__position]
 
+
+	def erase(self):
+		""" Erase the value on the tape in the current position. """
+		self.__tape[self.__position] = None
+		
 	
 	def initialize(self,tape):
 		""" Initializes starting data for the tape"""
