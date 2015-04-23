@@ -1,0 +1,7 @@
+3 - Pi Starter Kits (https://www.adafruit.com/products/2125)
+3 - Pi Cameras (https://www.adafruit.com/products/1367)
+1 - Shift Registers (https://www.adafruit.com/products/450)
+3 - Motor Kits (https://www.adafruit.com/products/1438)
+3 - Motor Sheilds for Pi (https://www.adafruit.com/products/2348)
+3 - Stepper Motors (https://www.adafruit.com/products/324)
+
