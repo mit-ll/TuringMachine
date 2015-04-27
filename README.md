@@ -7,6 +7,8 @@ Additional supporting information can be found on the [wiki](https://github.com/
 ## Resources
   - [A Turing Machine](http://aturingmachine.com/)
   - [Turing Machine Emulator](http://www.turing.org.uk/turing/scrapbook/tmjava.html)
+  - [Dimensions of 35mm film](http://www.brianpritchard.com/Fig%202.jpg)
+  - [Dimensions of 35mm film (alt)](https://www.stereoscopy.com/faq/standard35ansi.gif)
 
 # Touch Screen installation
 
