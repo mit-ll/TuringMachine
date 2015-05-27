@@ -67,10 +67,8 @@ class VirtualHardware(AbstractHardware):
 
 	def tape(self):
 		""" For debug use only: prints and returns the whole tape"""
-		print self.__tape
 		return self.__tape
 
 	def position(self):
 		""" For debug use only: prints and returns the current location of the tape """
-		print self.__position
 		return self.__position
