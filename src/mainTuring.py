@@ -90,6 +90,17 @@ while current_state != "stop":
         print "ERROR: Got a read value with no definition. (%s)"%read_val
         break
     
+    # Print current state info
+    print "-"*15 \
+        + " State %s / Iteration %s "%(statename,count) \
+        + "-"*15
+    print "* Tape position: %s"%turing_machine.position()
+    print "* Read: %s"%read_val
+    print "--"
+    print "** Write: %s"%state_function['wv']
+    print "** Move: %s"%state_function['mv']
+    print "** Transition: %s"%state_function['ns']
+    print "--"
 
     # Write our next value
     write_val = state_function["wv"]
@@ -105,16 +116,7 @@ while current_state != "stop":
     # Update our state
     next_state = statefunction["ns"]
 
-    # Print current state info
-    print "-"*15 \
-            + " State %s / Iteration %s "%(statename,count) \
-            + "-"*15
-    print "* Tape position: %s"%turing_machine.position()
-    print "* Read: %s"%read_val
-    print "--"
-    print "** Write: %s"%state_function['wv']
-    print "** Move: %s"%state_function['mv']
-    print "** Transition: %s"%state_function['ns']
+
 
     print ""
 
