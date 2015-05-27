@@ -127,95 +127,116 @@ void loop() {
   if(Serial.available()){
     c = Serial.read();
     
-    Serial.print("Read: ");
-    Serial.println(c);
     switch(c){
     
-    // Eraser functions
-    case 'E':
-      eraserLift();
-      break;
-    case 'e':
-      eraserLower();
-      break;
-    case 'S':
-      eraserSpin();
-      break;
-    case 's':
-      eraserStop();
-      break;
-    case 'D':
-      tapeMotor->step(125, FORWARD, DOUBLE);
-      delay(100);
-      eraserLower();
-      delay(100);
-      eraserSpin();
-      delay(100);
-      tapeMotor->step(30, BACKWARD, DOUBLE);
-      delay(100);
-      tapeMotor->step(30, FORWARD, DOUBLE);
-      delay(100);
-      tapeMotor->step(30, BACKWARD, DOUBLE);
-      delay(100);
-      tapeMotor->step(30, FORWARD, DOUBLE);
-      delay(100);
-      eraserStop();
-      eraserLift();
-      delay(100);
-      tapeMotor->step(125, BACKWARD, DOUBLE);
-      break;
-    case 'M':
-      markerLift();
-      break;
-    case 'm':
-      markerLower();
-      break;
-    case 'G':
-      gantryOut();
-      break;
-    case 'g':
-      gantryIn();
-      break;
-    case 'z':
-      gantryZero();
-      break;
-    case '1':
-      markerLower();
-      gantryOut();
-      markerLift();
-      gantryIn();
-      break;
-    case '0':
-      markerLower();
-      gantryOut();
-      tapeMotor->step(20, FORWARD, DOUBLE);
-      gantryIn();
-      tapeMotor->step(20, BACKWARD, DOUBLE);
-      markerLift();
-      break;
-    case '+':
-      //markerLift();
-      if(val < 252)
-        val += 4;
-      break;
-    case '-':
-      //markerLower();
-      if(val > 3)
-        val -= 4;
-      break;
-    
-     
-    // Tape Movements
-    case 'l':
-      tapeMoveLeft();
-      break;
-    case 'r':
-      tapeMoveRight();
-      break;
+      // Eraser functions
+      case 'E':
+        eraserLift();
+        break;
+      case 'e':
+        eraserLower();
+        break;
+      case 'S':
+        eraserSpin();
+        break;
+      case 's':
+        eraserStop();
+        break;
+        
+      // Marker functions
+      case 'M':
+        markerLift();
+        break;
+      case 'm':
+        markerLower();
+        break;
+      case 'G':
+        gantryOut();
+        break;
+      case 'g':
+        gantryIn();
+        break;
+      case 'z':
+        gantryZero();
+        break;
       
-    }
-    
-    // Init
+      case '+':
+        //markerLift();
+        if(val < 252)
+          val += 4;
+        break;
+      case '-':
+        //markerLower();
+        if(val > 3)
+          val -= 4;
+        break;
+      
+      ///
+      //  Turing Machine Functions
+      ///
+       
+      // Move tape Left
+      case 'l':
+        tapeMoveLeft();
+        
+        Serial.println("done");
+        break;
+      // Move tape Right
+      case 'r':
+        tapeMoveRight();
+        
+        Serial.println("done");
+        break;
+      
+      // Write a 1
+      case '1':
+        markerLower();
+        gantryOut();
+        markerLift();
+        gantryIn();
+        
+        Serial.println("done");
+        break;
+      // Write a 0
+      case '0':
+        markerLower();
+        gantryOut();
+        tapeMotor->step(20, FORWARD, DOUBLE);
+        gantryIn();
+        tapeMotor->step(20, BACKWARD, DOUBLE);
+        markerLift();
+        
+        Serial.println("done");
+        break;
+        
+      // Erase the current tape position
+      case 'D':
+        tapeMotor->step(125, FORWARD, DOUBLE);
+        delay(100);
+        eraserLower();
+        delay(100);
+        eraserSpin();
+        delay(100);
+        tapeMotor->step(30, BACKWARD, DOUBLE);
+        delay(100);
+        tapeMotor->step(30, FORWARD, DOUBLE);
+        delay(100);
+        tapeMotor->step(30, BACKWARD, DOUBLE);
+        delay(100);
+        tapeMotor->step(30, FORWARD, DOUBLE);
+        delay(100);
+        eraserStop();
+        eraserLift();
+        delay(100);
+        tapeMotor->step(125, BACKWARD, DOUBLE);
+        
+        Serial.println("done");
+        break;
+        
+      default:
+        Serial.println("unknown");
+        break;
+    } // End switch
     
     
 //    Serial.println(val);
