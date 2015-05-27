@@ -10,123 +10,148 @@ filename = "turingFiles/unary_addition.turing"
 import pprint
 import sys
 import os
+import argparse
 
 from tmachine.PhysicalHardware import PhysicalHardware
-tape = [None,"1","1",None,"1","1","1","1","1","1","1",None]
-turing_machine = PhysicalHardware("/dev/tty.usbmodem1d11131",
-                                  init = tape)
 
-# Define our dictionary to fill our state with
-statedict = {}
+def read_turing_program(filename):
+    # Define our dictionary to fill our state with
+    statedict = {}
+        
+    # read in file, poplating statedict(first dictionary)
+    f = open(filename)
+
+    # Read initial tape
+    tape_line = f.readline().strip()
+    initial_tape = tape_line.split(",")
+    # Replace _'s with None
+    initial_tape = [None if x=="_" else x for x in initial_tape]
+
+    # same as if statments, run touring machine
+    for line in f:
+        
+        # Read, strip, split line
+        value = line.strip()
+        valuelist= value.split()
+        
+        if len(valuelist) != 5:
+            print "Error! I don't like this line: %s"%valuelist
+            print len(valuelist)
+            continue
+
+        # Extract our values
+        statename = valuelist[0]
+        readvalue = valuelist[1]
+        writevalue = valuelist[2]
+        movevalue = valuelist[3]
+        nextstate = valuelist[4]
+
+        # _ is None to keep our input files clean
+        if readvalue == "_":
+            readvalue = None
+        if writevalue == "_":
+            writevalue = None
+
+        statefunction = {"wv":writevalue,
+                 "mv":movevalue,
+                 "ns":nextstate}
+
+        # Create a new state if needed
+        if statename  not in statedict:
+            statedict[statename] = {}
+
+        # Update our dict for state transitions
+        readdict = statedict[statename]
+        readdict[readvalue]=statefunction
+
+    return statedict, initial_tape
+
+
+def execut_turing_machine(statedict, turing_machine):
+
+    # Start at state 0
+    current_state = "0"
+    count = 0
+    # Loop until we hit the end state
+    while current_state != "stop":
+        
+        # Read the current value of the tape
+        read_val = turing_machine.read()
+        state_function = None
+        read_function = None
+
+        # Lookup state in dictionary    
+        if current_state in statedict:
+            read_function = statedict[current_state]
+        else:
+            print "ERROR: Found an undefined state (%s)"%state
+            break
+
+        # Look up function from read value
+        if read_val in read_function:
+            state_function = read_function[read_val]
+        else :
+            print "ERROR: Got a read value with no definition. (%s)"%read_val
+            break
+        
+        # Extract our values
+        move_dir = state_function["mv"]
+        write_val = state_function["wv"]
+        next_state = state_function["ns"]
+        
+        # Print current state info
+        print "-"*15 \
+            + " State %s / Iteration %s "%(current_state,count) \
+            + "-"*15
+        print "* Tape position: %s"%turing_machine.position()
+        print "* Read: %s"%read_val
+        print "--"
+        print "** Write: %s"%write_val
+        print "** Move: %s"%move_dir
+        print "** Transition: %s"%next_state
+        print "--"
+
+        # Write our next value
+        turing_machine.write(write_val)
+
+        # Move our tape
+        if move_dir == "R":
+            turing_machine.moveLeft()
+        elif move_dir == "L":
+            turing_machine.moveRight()
+
+        # Keep output pretty
+        print ""
+
+        # Update our state and counter
+        current_state = next_state
+        count += 1
+
     
-# read in file, poplating statedict(first dictionary)
-f = open(filename)
-
-# same as if statments, run touring machine
-for line in f:
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("turing_program", help="Filename of the turing machine program to execute. (e.g. turingFiles/unary_addition.turing)")
+    parser.add_argument("arduino_serial", help="Serial port of the Arduino. (e.g. /dev/tty.usbmodem1d11131)")
+    args = parser.parse_args()
     
-    # Read, strip, split line
-    value = line.strip()
-    valuelist= value.split()
+    # Read in our state machine
+    (statedict, initial_tape) = read_turing_program(args.turing_program)
     
-    if len(valuelist) != 5:
-        print "Error! I don't like this line: %s"%valuelist
-        print len(valuelist)
-        continue
-
-    # Extract our values
-    statename = valuelist[0]
-    readvalue = valuelist[1]
-    writevalue = valuelist[2]
-    movevalue = valuelist[3]
-    nextstate = valuelist[4]
-
-    # _ is None to keep our input files clean
-    if readvalue == "_":
-        readvalue = None
-    if writevalue == "_":
-        writevalue = None
-
-    statefunction = {"wv":writevalue,
-             "mv":movevalue,
-             "ns":nextstate}
-
-    # Create a new state if needed
-    if statename  not in statedict:
-        statedict[statename] = {}
-
-    # Update our dict for state transitions
-    readdict = statedict[statename]
-    readdict[readvalue]=statefunction
-
-print "* Sucessfully read in our state machine:"
-pprint.pprint(statedict)
-print ""
-print "* Beginning execution..."
-print ""
-
-# Start at state 0
-current_state = "0"
-count = 0
-# Loop until we hit the end state
-while current_state != "stop":
+    print "* Sucessfully read in our state machine:"
+    pprint.pprint(statedict)
+    print "* Initial tape: %s"%initial_tape
+    print ""
     
-    # Read the current value of the tape
-    read_val = turing_machine.read()
-    state_function = None
-    read_function = None
-
-    # Lookup state in dictionary    
-    if current_state in statedict:
-        read_function = statedict[current_state]
-    else:
-        print "ERROR: Found an undefined state (%s)"%state
-        break
-
-    # Look up function from read value
-    if read_val in read_function:
-        state_function = read_function[read_val]
-    else :
-        print "ERROR: Got a read value with no definition. (%s)"%read_val
-        break
-    
-    # Print current state info
-    print "-"*15 \
-        + " State %s / Iteration %s "%(statename,count) \
-        + "-"*15
-    print "* Tape position: %s"%turing_machine.position()
-    print "* Read: %s"%read_val
-    print "--"
-    print "** Write: %s"%state_function['wv']
-    print "** Move: %s"%state_function['mv']
-    print "** Transition: %s"%state_function['ns']
-    print "--"
-
-    # Write our next value
-    write_val = state_function["wv"]
-    turing_machine.write(write_val)
-
-    # Move our tape
-    move_dir = state_function["mv"]
-    if move_dir == "R":
-        turing_machine.moveLeft()
-    else:
-        turing_machine.moveRight()
-
-    # Update our state
-    next_state = statefunction["ns"]
-
-
-
+    print "* Connecting to our turing machine..."
+    # Initialize our turing machine
+    turing_machine = PhysicalHardware(args.arduino_serial,
+                                      init = initial_tape)
+                                      
+    print "* Beginning execution..."
     print ""
 
-    # Update our state and counter
-    current_state = state_function['ns']
-    count += 1
+    execut_turing_machine(statedict,turing_machine)
 
-    
-    
-    
     
         
     
