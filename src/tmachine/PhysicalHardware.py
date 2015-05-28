@@ -14,7 +14,7 @@ class PhysicalHardware(AbstractHardware):
 
     Used for general testing of Turing machine logic and interface """
 
-    def __init__(self, serial_name, **kwargs):
+    def __init__(self, **kwargs):
         """ Creates the virtual hardware. 
 
         Keyword arguments:
@@ -22,7 +22,7 @@ class PhysicalHardware(AbstractHardware):
          + init        = []      <- starting data of tape (calls initialize)
          """
 
-        self.__serial = serial.Serial(serial_name, 9600, timeout=1)
+        self.__serial = serial.Serial(kwargs["serial_name"], 9600, timeout=1)
         time.sleep(2)
             
         self.__tape_length = 1000
@@ -84,7 +84,7 @@ class PhysicalHardware(AbstractHardware):
             if value == "1":
                 self._send_command(WRITE_ONE)
             elif value == "0":
-                self._send_command(WRITE_TWO)
+                self._send_command(WRITE_ZERO)
             elif value == None:
                 print "* Write None. Doing nothing."
             else:

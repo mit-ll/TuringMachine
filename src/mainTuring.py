@@ -13,6 +13,7 @@ import os
 import argparse
 
 from tmachine.PhysicalHardware import PhysicalHardware
+from tmachine.VirtualHardware import VirtualHardware
 
 def read_turing_program(filename):
     # Define our dictionary to fill our state with
@@ -67,7 +68,7 @@ def read_turing_program(filename):
     return statedict, initial_tape
 
 
-def execut_turing_machine(statedict, turing_machine):
+def execute_turing_machine(statedict, turing_machine):
 
     # Start at state 0
     current_state = "0"
@@ -84,7 +85,7 @@ def execut_turing_machine(statedict, turing_machine):
         if current_state in statedict:
             read_function = statedict[current_state]
         else:
-            print "ERROR: Found an undefined state (%s)"%state
+            print "ERROR: Found an undefined state (%s)"%current_state
             break
 
         # Look up function from read value
@@ -144,13 +145,15 @@ if __name__ == "__main__":
     
     print "* Connecting to our turing machine..."
     # Initialize our turing machine
-    turing_machine = PhysicalHardware(args.arduino_serial,
+    turing_machine = VirtualHardware(serial_name=args.arduino_serial,
                                       init = initial_tape)
                                       
     print "* Beginning execution..."
     print ""
 
-    execut_turing_machine(statedict,turing_machine)
+    execute_turing_machine(statedict,turing_machine)
+
+    print turing_machine.tape()
 
     
         
