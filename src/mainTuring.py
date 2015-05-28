@@ -132,7 +132,7 @@ def execute_turing_machine(statedict, turing_machine):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("turing_program", help="Filename of the turing machine program to execute. (e.g. turingFiles/unary_addition.turing)")
-    parser.add_argument("arduino_serial", help="Serial port of the Arduino. (e.g. /dev/tty.usbmodem1d11131)")
+    parser.add_argument("-s", "--arduino_serial", help="Serial port of the Arduino. (e.g. /dev/tty.usbmodem1d11131)", default=None)
     args = parser.parse_args()
     
     # Read in our state machine
@@ -143,17 +143,21 @@ if __name__ == "__main__":
     print "* Initial tape: %s"%initial_tape
     print ""
     
-    print "* Connecting to our turing machine..."
-    # Initialize our turing machine
-    turing_machine = VirtualHardware(serial_name=args.arduino_serial,
-                                      init = initial_tape)
+        # Initialize our turing machine
+    if args.arduino_serial is not None:
+        print "* Connecting to our physical turing machine..."
+        turing_machine = PhysicalHardware(serial_name=args.arduino_serial,
+                                         init = initial_tape)
+    else:
+        print "* Initializing a virtual turing machine..."
+        turing_machine = VirtualHardware(init = initial_tape)
                                       
     print "* Beginning execution..."
     print ""
 
     execute_turing_machine(statedict,turing_machine)
 
-    print turing_machine.tape()
+#    print turing_machine.tape()
 
     
         
