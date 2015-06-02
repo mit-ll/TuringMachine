@@ -18,4 +18,5 @@ This repository contains all of the models, code, and bill of materials used to 
 
 ### Setting up the console cable
  - The following [tutorial](https://learn.adafruit.com/downloads/pdf/adafruits-raspberry-pi-lesson-5-using-a-console-cable.pdf) worked perfectly.  Screen should be able connect to the serial port after you install the driver.
-> screen /dev/tty.usbserial 115200
+
+ >screen /dev/tty.usbserial 115200
