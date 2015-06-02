@@ -18,7 +18,7 @@ Adafruit_StepperMotor *myMotor = AFMS.getStepper(200, 2);
 
 void setup() {
   
-  // Start our serial
+  // Setup our serial
   Serial.begin(9600);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for Leonardo only
