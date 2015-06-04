@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Wed Mar 25 12:49:01 2015
+This is the main program that parses turing programs and executes them on either virtual or physical hardware.
 
-@author: Div 5 Cyberpatriot
+@author: Chad Spensky, Kyania Burke, and Trevon Bennett
 """
 filename = "turingFiles/unary_addition.turing"
 
@@ -16,6 +16,21 @@ from tmachine.PhysicalHardware import PhysicalHardware
 from tmachine.VirtualHardware import VirtualHardware
 
 def read_turing_program(filename):
+    """
+        Read in the turing program from a file and return a state machine represented as nested dictionaries.
+        
+        :param: filename - Filename of turing program 
+                           Format: state_name read_val write_val move_dir next_state)
+        :return: state machien dictionary
+                Format: {sate_name: 
+                            {read_val: 
+                                {"wv": write_val, 
+                                "mv": move_dir, "ns": next_state
+                                }
+                            }
+                        }
+        
+    """
     # Define our dictionary to fill our state with
     statedict = {}
         
@@ -69,7 +84,9 @@ def read_turing_program(filename):
 
 
 def execute_turing_machine(statedict, turing_machine):
-
+    """
+        This function will execution the provide states on the provided turing machine, either physical or virtual.
+    """
     # Start at state 0
     current_state = "0"
     count = 0
@@ -156,8 +173,6 @@ if __name__ == "__main__":
     print ""
 
     execute_turing_machine(statedict,turing_machine)
-
-#    print turing_machine.tape()
 
     
         
