@@ -12,6 +12,9 @@ This repository contains all of the models, code, and bill of materials used to 
   - [Dimensions of 35mm film (alt)](https://www.stereoscopy.com/faq/standard35ansi.gif)
   - [Robotic Calligraphy](http://calligraphybyherald.wix.com/herald#!gallery/c1zy6)
 
+### Parts
+ - [35mm Film Leader](http://www.numbersfilmsupply.com/categories/FILM-SUPPLIES/LEADER/)
+
 ## Raspberry Pi
  - [Touchscreen Drivers] (http://engineering-diy.blogspot.com/2013/01/adding-7inch-display-with-touchscreen.html)
  - [Modifying the Pi SD card on a Mac](http://pi.gbaman.info/?p=328)
